@@ -1,7 +1,7 @@
 import json
 import torch
 from PIL import Image
-
+from my_lib import MyLib
 import triton_python_backend_utils as pb_utils
 
 from torchvision import transforms
@@ -10,6 +10,7 @@ from torchvision import transforms
 class TritonPythonModel:
 
     def initialize(self, args):
+        self._my_lit = MyLib()
         self.model_config = model_config = json.loads(args['model_config'])
 
         output0_config = pb_utils.get_output_config_by_name(
