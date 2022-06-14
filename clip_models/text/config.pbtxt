@@ -1,0 +1,19 @@
+name: "text"
+backend: "python"
+
+input [
+  {
+    name: "INPUT0"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+output [
+  {
+    name: "OUTPUT0"
+    data_type: TYPE_INT32
+    dims: [ -1, 77 ]
+  }
+]
+
+instance_group [{ kind: KIND_CPU }]

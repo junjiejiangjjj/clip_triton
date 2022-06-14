@@ -1,0 +1,45 @@
+name: "clip_text"
+platform: "ensemble"
+max_batch_size: 256
+input [
+  {
+    name: "INPUT"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]
+output [
+  {
+    name: "OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1, 512 ]
+  }
+]
+ensemble_scheduling {
+  step [
+    {
+      model_name: "text"
+      model_version: -1
+      input_map {
+        key: "INPUT0"
+        value: "INPUT"
+      }
+      output_map {
+        key: "OUTPUT0"
+        value: "preprocessed_text"
+      }
+    },
+    {
+      model_name: "clip_texture"
+      model_version: -1
+      input_map {
+        key: "input"
+        value: "preprocessed_text"
+      }
+      output_map {
+        key: "output"
+        value: "OUTPUT"
+      }
+    }
+  ]
+}

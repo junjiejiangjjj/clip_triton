@@ -1,0 +1,17 @@
+name: "clip_texture"
+platform: "tensorrt_plan"
+
+input [
+  {
+    name: "input"
+    data_type: TYPE_INT32
+    dims: [ -1, 77 ]
+  }
+]
+output [
+  {
+    name: "output"
+    data_type: TYPE_FP32
+    dims: [ -1,512 ]
+  }
+]
